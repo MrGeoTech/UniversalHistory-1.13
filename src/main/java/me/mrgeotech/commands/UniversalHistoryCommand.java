@@ -94,8 +94,10 @@ public class UniversalHistoryCommand implements CommandExecutor {
 								Player staff = (Player) sender;
 								if (Bukkit.getBukkitVersion().split("-")[0].equalsIgnoreCase("1.8")) {
 									prev.put(staff, staff.getItemInHand());
+									staff.setItemInHand(book);
 								} else {
 									prev.put(staff, staff.getInventory().getItemInMainHand());
+									staff.getInventory().setItemInMainHand(book);
 								}
 								books.put(staff, book);
 							} else {
