@@ -21,7 +21,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class UniversalHistoryCommand implements CommandExecutor {
 	
-	private static final String IP = "localhost";
+	private static final String IP = "geopixel.ddns.net";
 	private static final int PORT = 50000;
 	
 	private UniversalHistory main;
