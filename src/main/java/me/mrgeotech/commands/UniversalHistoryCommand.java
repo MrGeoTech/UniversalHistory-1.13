@@ -1,6 +1,5 @@
 package me.mrgeotech.commands;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -22,7 +21,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public class UniversalHistoryCommand implements CommandExecutor {
 	
-	private static final String IP = "localhost";
+	private static final String IP = "geopixel.ddns.net";
 	private static final int PORT = 50000;
 	
 	private UniversalHistory main;
@@ -91,12 +90,14 @@ public class UniversalHistoryCommand implements CommandExecutor {
 						}
 						if (sender instanceof Player) {
 							if (playerUUID.size() != 0) {
-								ItemStack book = new BookHandler(playerUUID, playerName, staffUUID, staffName, serverIP, date, ptype, reason).buildBook();
+								ItemStack book = new BookHandler(player, playerUUID, playerName, staffUUID, staffName, serverIP, date, ptype, reason).buildBook();
 								Player staff = (Player) sender;
 								if (Bukkit.getBukkitVersion().split("-")[0].equalsIgnoreCase("1.8")) {
 									prev.put(staff, staff.getItemInHand());
+									staff.setItemInHand(book);
 								} else {
 									prev.put(staff, staff.getInventory().getItemInMainHand());
+									staff.getInventory().setItemInMainHand(book);
 								}
 								books.put(staff, book);
 							} else {
